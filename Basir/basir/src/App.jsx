@@ -103,6 +103,7 @@ function App() {
       location: "Mumbai, India",
     },
   ];
+  //all data from my side best design yarr
 
   return (
     <>
