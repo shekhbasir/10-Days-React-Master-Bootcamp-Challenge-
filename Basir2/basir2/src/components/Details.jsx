@@ -1,19 +1,30 @@
-///how i am going to changing and updating the thing
-
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Details() {
-  const [data, setdata] = useState([0]);
-  const kamkar = () => {
-    setdata(data.map((kam) => kam * 18));
-    console.log(data);
-  };
+  //now i need to call the api
+  const [kam, setkam] = useState({});
+  useEffect(() => {
+    const hamarkam = async () => {
+      const sabdata = await await axios.get(
+        "https://jsonplaceholder.typicode.com/users",
+      );
+      setkam(sabdata);
+      console.log(sabdata);
+    };
+    hamarkam();
+  }, []);
   return (
     <>
-      <h1> this is the code of the normal things </h1> <br /> <br />
-      <button onClick={kamkar}>Click</button> <br />
-      <h3>{data}</h3>
+      <h1> this is the details of the all student </h1> <br />
+      <br />
+      <div>
+        {kam.forEach((element) => {
+          <h3>{element}</h3>;
+        })}
+      </div>
     </>
   );
 }
 export default Details;
+
+// "https://jsonplaceholder.typicode.com/users",
