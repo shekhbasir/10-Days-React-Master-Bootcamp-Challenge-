@@ -1,40 +1,36 @@
-const express = require("express");
-const cors = require("cors");
-const multer = require("multer");
-require("dotenv").config();
-
-const app = express();
+const express=require("express");
+const multer=require('multer');
+const cors=require('cors');
+require('dotenv').config();
+const app=express();
 
 app.use(cors());
 app.use(express.json());
-
-// multer setup
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./upload");
+//here 
+const storage=multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null,"./upload");
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+  filename:(req,file,cb)=>{
+    cb(null,Date.now()+"-"+file.originalname);
+  }
+})
 
-const upload = multer({ storage });
 
-// file upload route
-app.post("/upload", upload.single("photo"), (req, res) => {
-  console.log(req.file);
+
+const upload=multer({storage});
+
+app.post("/upload",upload.single("photo"),(req,res)=>{
   res.json({
-    message: "file Uploaded Successfully",
-    file: req.file,
+    message:"Your File is in Backend",
+    file:req.file,
   });
-});
+  console.log(req.file);
+})
 
-app.get("/", (req, res) => {
-  console.log("code is running");
-  res.send("Backend running");
-});
 
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`this is the link http://localhost:${PORT}`);
-});
+const PORT=process.env.PORT||7000;
+
+app.listen(PORT,()=>{
+  console.log(`this is the link  http://localhost:${PORT}`)
+})

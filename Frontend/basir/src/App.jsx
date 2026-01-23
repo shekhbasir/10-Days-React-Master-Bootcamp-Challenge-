@@ -1,10 +1,10 @@
 import React from "react";
-import Alldata from "./Alldata";
+import Kamkar from "./Kamkar";
 
 function App() {
   return (
     <>
-      <Alldata />
+      <Kamkar />
     </>
   );
 }
